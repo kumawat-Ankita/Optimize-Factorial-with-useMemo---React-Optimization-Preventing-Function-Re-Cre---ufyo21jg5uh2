@@ -1,13 +1,22 @@
+import React, { useMemo } from 'react';
 
+const FactorialComponent = ({ number }) => {
+  const factorial = useMemo(() => {
+    const calculateFactorial = (n) => {
+      if (n === 0 || n === 1) {
+        return 1;
+      }
+      let result = 1;
+      for (let i = 2; i <= n; i++) {
+        result *= i;
+      }
+      return result;
+    };
 
-function factorial(n) {
-  if (n <= 1) return 1;
-  return n * factorial(n - 1);
-}
+    return calculateFactorial(number);
+  }, [number]);
 
-export default function FactorialComponent() {
+  return <p>Factorial: {factorial}</p>;
+};
 
-
-  return <div className='result'>The factorial of {} is {}</div>;
-}
-
+export default FactorialComponent;
